@@ -1,0 +1,35 @@
+/* Universal Selector */
+* {
+  margin: 0;
+  padding: o;
+}
+body {
+  font-family: "Inter", serif;
+  background-color: hsl(212, 45%, 89%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+article {
+  max-width: 360px;
+  margin: 0 auto;
+}
+/* CARD */
+.card {
+  background-color: hsl(0, 0%, 100%);
+  padding: 18px;
+  border-radius: 19px;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  border-radius: 12px;
+}
+/* TEXT */
+.text {
+  padding: 20px 11px;
+  color: hsl(216, 15%, 48%);
+}
+h2 {
+  margin-bottom: 10px;
+}
