@@ -55,3 +55,11 @@ function protect_email(email) {
 }
 console.log(protect_email("robin_singh@example.com")); //
 ("robin...@example.com");
+
+/*7. Parameterize String*/
+
+function string_parameterize(str) {
+  let parametized_str = str.toLowerCase().split(" ").join("-");
+  return parametized_str;
+}
+console.log(string_parameterize("Robin Singh from USA.")); //"robin-singh-from-usa"
