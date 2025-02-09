@@ -63,3 +63,10 @@ function string_parameterize(str) {
   return parametized_str;
 }
 console.log(string_parameterize("Robin Singh from USA.")); //"robin-singh-from-usa"
+
+/*8. Capitalize First Letter*/
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+console.log(capitalize("js string exercises")); // "Js string exercises"
