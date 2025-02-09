@@ -1,1 +1,13 @@
 "strict";
+
+/*CHALLENGE QUESTIONS*/
+
+// 1:Password Authentication: Storing passwords in a hashed format ensures that even if a database is compromised, attackers cannot easily retrieve the original passwords.
+
+// 2:Multi-Factor Authentication (MFA): MFA requires users to provide two or more verification factors (password and a one-time code), enhancing security by adding an extra layer beyond just the password. It helps prevent attacks like phishing, where attackers rely  on stolen passwords.
+
+// 3:Balance Verification: Verifying the account balance before a withdrawal ensures that the user has sufficient funds. Skipping this step can lead to overdrafts or fraudulent transactions, exposing both the user and the system to financial risks and potential security breaches.
+
+// 4:Daily Transaction Limit: A daily transaction limit helps minimize the damage from unauthorized or excessive withdrawals by setting a limit howmuch can be withdrawn within a given day. It protects accounts from large-scale fraud or hacking attempts by limiting potential financial loss.
+
+// 5:Improvement (Fraud Detection): To detect fraud, you could track user behavior such as transaction frequency, withdrawal amounts, and geographic location. Anomalies like unusually large withdrawals, frequent transactions in short periods, or activities from uncommon locations can trigger alerts, helping to identify potential fraud patterns.
