@@ -24,3 +24,11 @@ function string_to_array(str) {
   return array_to_string;
 }
 console.log(string_to_array("Robin Singh"));
+
+/* 4. Extract Characters*/
+
+function truncate_string(str, num) {
+  let truncated_string = str.substring(str, num);
+  return truncated_string;
+}
+console.log(truncate_string("Robin Singh", 4));
