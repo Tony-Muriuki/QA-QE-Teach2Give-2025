@@ -118,3 +118,16 @@ function uncamelize(str, separator = " ") {
 
 console.log(uncamelize("helloWorld")); // "hello world"
 console.log(uncamelize("helloWorld", "-")); // "hello-world"
+
+/*13. Repeat String*/
+
+function repeat(str, num) {
+  if (num <= 0) return "";
+  let repeated = "";
+  for (let i = 0; i < num; i++) {
+    repeated += str;
+  }
+  return repeated;
+}
+
+console.log(repeat("Ha!", 3)); // "Ha!Ha!Ha!"
