@@ -100,3 +100,21 @@ function camelize(str) {
   return camelized_str;
 }
 console.log(camelize("JavaScript Exercises")); // "JavaScriptExercises"
+
+/* 12 Uncamelize String */
+
+function uncamelize(str, separator = " ") {
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (char === char.toUpperCase()) {
+      result += separator + char.toLowerCase();
+    } else {
+      result += char;
+    }
+  }
+  return result.charAt(0) === separator ? result.slice(1) : result;
+}
+
+console.log(uncamelize("helloWorld")); // "hello world"
+console.log(uncamelize("helloWorld", "-")); // "hello-world"
