@@ -32,3 +32,15 @@ function truncate_string(str, num) {
   return truncated_string;
 }
 console.log(truncate_string("Robin Singh", 4));
+
+/*5. Abbreviate Name*/
+
+function abbrev_name(str) {
+  let abbreviated_name = str.trim().split(" ");
+  if (abbreviated_name.length >= 2) {
+    return abbreviated_name[0] + " " + abbreviated_name[1].charAt(0) + ".";
+  }
+  return abbreviated_name[0];
+}
+
+console.log(abbrev_name("Robin Singh")); // Output: "Robin S."
