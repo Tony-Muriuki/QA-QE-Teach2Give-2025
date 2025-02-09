@@ -131,3 +131,12 @@ function repeat(str, num) {
 }
 
 console.log(repeat("Ha!", 3)); // "Ha!Ha!Ha!"
+
+/*14. Insert in String*/
+
+function insert(str, insertStr, position) {
+  return str.slice(0, position) + insertStr + str.slice(position);
+}
+
+console.log(insert("We are doing some exercises.", "JavaScript ", 18));
+// Output: "We are doing some JavaScript exercises."
