@@ -18,6 +18,14 @@ function verifyMFA(inputMfaCode, correctMfaCode) {
 
 console.log(verifyMFA("123456", "123456"));
 
+/*3:Create a function called checkBalance*/
+
+function checkBalance(balance, withdrawalAmount) {
+  return balance >= withdrawalAmount;
+}
+console.log(checkBalance(500, 300));
+console.log(checkBalance(200, 300));
+
 /*CHALLENGE QUESTIONS*/
 
 // 1:Password Authentication: Storing passwords in a hashed format ensures that even if a database is compromised, attackers cannot easily retrieve the original passwords.
