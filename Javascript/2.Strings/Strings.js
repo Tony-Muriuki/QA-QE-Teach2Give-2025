@@ -80,3 +80,15 @@ function capitalize_Words(str) {
     .join(" ");
 }
 console.log(capitalize_Words("js string exercises")); // "Js String Exercises"
+
+/*10 Swap Case*/
+function swapcase(str) {
+  return str
+    .split("")
+    .map((char) =>
+      char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase()
+    )
+    .join("");
+}
+
+console.log(swapcase("AaBbc")); //  "aAbBC"
