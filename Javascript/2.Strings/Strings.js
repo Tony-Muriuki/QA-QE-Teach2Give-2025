@@ -180,3 +180,17 @@ function string_chop(str, chunkSize) {
 }
 
 console.log(string_chop("w3resource", 3)); // ["w3r", "eso", "urc", "e"]
+
+/*18 Count Substring Occurrences*/
+
+function count(str, subStr) {
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str.substring(i, i + subStr.length) === subStr) {
+      count++;
+    }
+  }
+  return count;
+}
+
+console.log(count("The quick brown fox jumps over the lazy dog", "the")); // Output: 2
