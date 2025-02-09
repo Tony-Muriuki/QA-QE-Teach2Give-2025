@@ -213,3 +213,5 @@ function formatted_string(padStr, num, direction) {
 }
 
 console.log(formatted_string("0000", 123, "l")); // "0123"
+
+/*Completed*/
