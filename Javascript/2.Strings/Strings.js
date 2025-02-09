@@ -140,3 +140,31 @@ function insert(str, insertStr, position) {
 
 console.log(insert("We are doing some exercises.", "JavaScript ", 18));
 // Output: "We are doing some JavaScript exercises."
+
+/*15 : Humanize Format*/
+
+function humanize_format(num) {
+  const lastDigit = num % 10;
+  const lastTwoDigits = num % 100;
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
+    return num + "th";
+  }
+  if (lastDigit === 1) return num + "st";
+  if (lastDigit === 2) return num + "nd";
+  if (lastDigit === 3) return num + "rd";
+
+  return num + "th";
+}
+
+console.log(humanize_format(301)); // "301st"
+
+/* 16. Truncate String with Ellipsis*/
+
+function text_truncate(str, length, ellipsis = "...") {
+  if (str.length > length) {
+    return str.slice(0, length) + ellipsis;
+  }
+  return str;
+}
+
+console.log(text_truncate("We are doing JS string exercises.", 15, "!!")); // "We are doing !!"
