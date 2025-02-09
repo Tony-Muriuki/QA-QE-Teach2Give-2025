@@ -194,3 +194,22 @@ function count(str, subStr) {
 }
 
 console.log(count("The quick brown fox jumps over the lazy dog", "the")); // Output: 2
+
+/*20. Pad String to Length*/
+
+function formatted_string(padStr, num, direction) {
+  let str = num.toString();
+  let padLength = padStr.length - str.length;
+
+  if (padLength > 0) {
+    if (direction === "l") {
+      str = padStr.slice(0, padLength) + str;
+    } else {
+      str = str + padStr.slice(0, padLength);
+    }
+  }
+
+  return str;
+}
+
+console.log(formatted_string("0000", 123, "l")); // "0123"
