@@ -44,3 +44,14 @@ function abbrev_name(str) {
 }
 
 console.log(abbrev_name("Robin Singh")); // Output: "Robin S."
+
+/*6. Hide Email Address*/
+function protect_email(email) {
+  let protected_email = email.split("_");
+  if (protected_email.length >= 2) {
+    return protected_email[0] + "..." + protected_email[1].slice(5);
+  }
+  return protected_email[0];
+}
+console.log(protect_email("robin_singh@example.com")); //
+("robin...@example.com");
