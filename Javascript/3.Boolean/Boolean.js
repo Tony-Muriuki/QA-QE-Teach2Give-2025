@@ -1,5 +1,15 @@
 "strict";
 
+/*1: Create a function called verifyPassword*/
+import bcrypt from "bcrypt";
+const password = "QWEiop5991";
+const hashedpassword = bcrypt.hashSync(password, 10);
+
+function verifyPassword(enteredPassword, hashedPassword) {
+  return bcrypt.compareSync(enteredPassword, hashedPassword);
+}
+console.log(verifyPassword("QWEiop5991", hashedPassword));
+
 /*CHALLENGE QUESTIONS*/
 
 // 1:Password Authentication: Storing passwords in a hashed format ensures that even if a database is compromised, attackers cannot easily retrieve the original passwords.
