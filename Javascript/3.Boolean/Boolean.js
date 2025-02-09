@@ -10,6 +10,14 @@ function verifyPassword(enteredPassword, hashedPassword) {
 }
 console.log(verifyPassword("QWEiop5991", hashedPassword));
 
+/*2:Create a function called verifyMFA*/
+
+function verifyMFA(inputMfaCode, correctMfaCode) {
+  return inputMfaCode === correctMfaCode;
+}
+
+console.log(verifyMFA("123456", "123456"));
+
 /*CHALLENGE QUESTIONS*/
 
 // 1:Password Authentication: Storing passwords in a hashed format ensures that even if a database is compromised, attackers cannot easily retrieve the original passwords.
