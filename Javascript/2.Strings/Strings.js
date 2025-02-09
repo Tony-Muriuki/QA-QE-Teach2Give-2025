@@ -92,3 +92,11 @@ function swapcase(str) {
 }
 
 console.log(swapcase("AaBbc")); //  "aAbBC"
+
+/*11: Camelize String */
+
+function camelize(str) {
+  let camelized_str = str.split(" ").join("");
+  return camelized_str;
+}
+console.log(camelize("JavaScript Exercises")); // "JavaScriptExercises"
