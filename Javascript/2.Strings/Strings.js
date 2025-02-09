@@ -168,3 +168,15 @@ function text_truncate(str, length, ellipsis = "...") {
 }
 
 console.log(text_truncate("We are doing JS string exercises.", 15, "!!")); // "We are doing !!"
+
+/*17:Chop String into Chunks*/
+
+function string_chop(str, chunkSize) {
+  let chunks = [];
+  for (let i = 0; i < str.length; i += chunkSize) {
+    chunks.push(str.slice(i, i + chunkSize));
+  }
+  return chunks;
+}
+
+console.log(string_chop("w3resource", 3)); // ["w3r", "eso", "urc", "e"]
