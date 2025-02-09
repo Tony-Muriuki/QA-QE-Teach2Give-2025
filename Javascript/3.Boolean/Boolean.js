@@ -26,6 +26,57 @@ function checkBalance(balance, withdrawalAmount) {
 console.log(checkBalance(500, 300));
 console.log(checkBalance(200, 300));
 
+/*4: Create a function called checkDailyLimit*/
+
+const dailyLimit = 5000;
+const withdrawalAmount = 3000;
+
+function checkDailyLimit(withdrawalAmount, dailyLimit) {
+  if (withdrawalAmount <= dailyLimit) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+/*5 : Create A function called ProcessWithdrawal*/
+
+function processWithdrawal(
+  enteredPassword,
+  inputMfaCode,
+  withdrawalAmount,
+  actualMfaCode,
+  balance,
+  dailyLimit,
+  hashedPassword
+) {
+  // Step 1: Verify the password
+  if (!verifyPassword(enteredPassword, hashedPassword)) {
+    return "Transaction Failed: Incorrect password.";
+  }
+
+  // Step 2: Verify MFA
+  if (!verifyMFA(inputMfaCode, actualMfaCode)) {
+    return "Transaction Failed: MFA failed.";
+  }
+
+  // Step 3: Check balance
+  if (!checkBalance(balance, withdrawalAmount)) {
+    return "Transaction Failed: Insufficient balance.";
+  }
+
+  // Step 4: Check daily limit
+  if (!checkDailyLimit(withdrawalAmount, dailyLimit)) {
+    return "Transaction Failed: Amount exceeds daily limit.";
+  }
+
+  // Step 5: If all conditions are met, deduct the withdrawal amount
+  balance -= withdrawalAmount;
+
+  // Return success message
+  return "Transaction Successful.";
+}
+
 /*CHALLENGE QUESTIONS*/
 
 // 1:Password Authentication: Storing passwords in a hashed format ensures that even if a database is compromised, attackers cannot easily retrieve the original passwords.
