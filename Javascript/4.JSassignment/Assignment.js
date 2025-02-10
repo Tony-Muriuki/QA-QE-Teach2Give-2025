@@ -1,6 +1,6 @@
 "strict";
 
-/* Function To Reverse A String*/
+/* 2:Function To Reverse A String*/
 
 function reverse_string(str) {
   let reversed_string = str.split("").reverse().join("");
@@ -8,7 +8,7 @@ function reverse_string(str) {
 }
 console.log(reverse_string("Reverse"));
 
-/* Remove Duplicates from a String*/
+/*5: Remove Duplicates from a String*/
 function remove_duplicate(str) {
   let uniquestr = "";
   for (let char of str) {
@@ -21,7 +21,7 @@ function remove_duplicate(str) {
 console.log(remove_duplicate("Programming"));
 console.log(remove_duplicate("Hello world"));
 
-/*Case Insensitive Palindrome*/
+/*8:Case Insensitive Palindrome*/
 
 function isCaseInsesitivePalindrome(str) {
   let palindrome_check = str.toLowerCase();
@@ -32,7 +32,7 @@ console.log(isCaseInsesitivePalindrome("Aba"));
 console.log(isCaseInsesitivePalindrome("Racecar"));
 console.log(isCaseInsesitivePalindrome("Palindrome"));
 
-/*Check if a String is a Palindrome*/
+/*1:Check if a String is a Palindrome*/
 function isPalindrome(str) {
   let cleaned_str = str
     .toLowerCase()
