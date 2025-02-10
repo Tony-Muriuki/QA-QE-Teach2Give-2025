@@ -58,3 +58,21 @@ function areAnagrams(str1, str2) {
   return sortedStr1 === sortedStr2;
 }
 console.log(areAnagrams("Listen", "Silent"));
+
+/* 3. Find the Longest Palindromic Substring*/
+
+function longestPalindromicSubstring(s) {
+  const s1 = s.split("");
+  const s2 = s.split("").reverse();
+  let arr = [];
+  for (let i = 0; i < s1.length; i++) {
+    if (s1[i] == s2[i]) {
+      arr.push(s1[i]);
+    } else {
+      continue;
+    }
+  }
+  return arr.join("");
+}
+console.log(longestPalindromicSubstring("babad"));
+console.log(longestPalindromicSubstring("cbbd"));
