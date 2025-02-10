@@ -66,6 +66,10 @@ function remove_duplicate(str) {
 console.log(remove_duplicate("Programming"));
 console.log(remove_duplicate("Hello world"));
 
+/*7. Longest Common Prefix*/
+
+function longestCommonPrefix() {}
+
 /*8:Case Insensitive Palindrome*/
 
 function isCaseInsesitivePalindrome(str) {
