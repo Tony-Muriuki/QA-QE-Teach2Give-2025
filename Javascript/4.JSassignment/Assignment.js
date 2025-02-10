@@ -47,3 +47,14 @@ function isPalindrome(str) {
 console.log(isPalindrome("A man, a plan, a canal, Panama"));
 console.log(isPalindrome("Was it a car or a cat i saw ?"));
 console.log(isPalindrome("Hello World!"));
+
+/*4. Check if Two Strings are Anagrams*/
+
+function areAnagrams(str1, str2) {
+  let sortedStr1 = str1.toLowerCase().split("").sort().join("");
+  console.log(sortedStr1);
+  let sortedStr2 = str2.toLowerCase().split("").sort().join("");
+  console.log(sortedStr2);
+  return sortedStr1 === sortedStr2;
+}
+console.log(areAnagrams("Listen", "Silent"));
