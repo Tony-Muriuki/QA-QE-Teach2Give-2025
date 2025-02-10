@@ -20,3 +20,14 @@ function remove_duplicate(str) {
 }
 console.log(remove_duplicate("Programming"));
 console.log(remove_duplicate("Hello world"));
+
+/*Case Insensitive Palindrome*/
+
+function isCaseInsesitivePalindrome(str) {
+  let palindrome_check = str.toLowerCase();
+  let reversed_str = palindrome_check.split("").reverse().join("");
+  return palindrome_check === reversed_str;
+}
+console.log(isCaseInsesitivePalindrome("Aba"));
+console.log(isCaseInsesitivePalindrome("Racecar"));
+console.log(isCaseInsesitivePalindrome("Palindrome"));
