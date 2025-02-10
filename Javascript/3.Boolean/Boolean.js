@@ -8,7 +8,7 @@ const hashedpassword = bcrypt.hashSync(password, 10);
 function verifyPassword(enteredPassword, hashedPassword) {
   return bcrypt.compareSync(enteredPassword, hashedPassword);
 }
-console.log(verifyPassword("QWEiop5991", hashedPassword));
+console.log(verifyPassword("QWEiop5991", hashedpassword));
 
 /*2:Create a function called verifyMFA*/
 
