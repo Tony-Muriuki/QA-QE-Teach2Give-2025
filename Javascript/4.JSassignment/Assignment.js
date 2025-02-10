@@ -31,3 +31,19 @@ function isCaseInsesitivePalindrome(str) {
 console.log(isCaseInsesitivePalindrome("Aba"));
 console.log(isCaseInsesitivePalindrome("Racecar"));
 console.log(isCaseInsesitivePalindrome("Palindrome"));
+
+/*Check if a String is a Palindrome*/
+function isPalindrome(str) {
+  let cleaned_str = str
+    .toLowerCase()
+    .replaceAll(" ", "")
+    .replaceAll(",", "")
+    .replaceAll("?", "")
+    .replaceAll("!", "");
+  let reversed = cleaned_str.split("").reverse().join("");
+  return cleaned_str === reversed;
+}
+
+console.log(isPalindrome("A man, a plan, a canal, Panama"));
+console.log(isPalindrome("Was it a car or a cat i saw ?"));
+console.log(isPalindrome("Hello World!"));
