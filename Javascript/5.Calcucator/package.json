@@ -4,14 +4,15 @@
   "main": "calculator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-"dev":"nodemon calculator.js"
+    "dev": "nodemon calculator.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "json-server": "^1.0.0-beta.3",
     "nodemon": "^3.1.9"
   },
-"type":"module"
+  "type": "module"
 }
