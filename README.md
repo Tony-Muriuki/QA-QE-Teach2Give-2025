@@ -9,3 +9,12 @@
 
 ## Day 3: HTML ASSIGNMENT
 ![Screenshot from 2025-02-07 23-09-03](https://github.com/user-attachments/assets/fb0c9e17-5bac-44fe-b504-996a07425711)
+
+## Day 4: Calculator Assignment
+![Screenshot from 2025-02-11 16-05-03](https://github.com/user-attachments/assets/24cfcdac-3c6c-48b3-8d11-988a3f434d9d)
+
+## Day 5: PRODUCTS DISPLAY(JSON)
+![Screenshot from 2025-02-13 15-19-31](https://github.com/user-attachments/assets/9e1edb1c-02b8-4a6d-b6ef-ab13eeb42d38)
+
+
+
