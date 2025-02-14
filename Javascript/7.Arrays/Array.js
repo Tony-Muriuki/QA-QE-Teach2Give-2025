@@ -113,4 +113,10 @@ const analyzeUsers = (users) => {
       (post) => new Date(post.timestamp) >= oneWeekAgo && post.likes >= 10
     )
   );
+
+  //Calculating average likes per active user
+  const totalLikes = popularPosts.reduce((sum, post) => sum + post.likes, 0);
+  const avgLikesPerUser = activeUsers.length
+    ? totalLikes / activeUsers.length
+    : 0;
 };
