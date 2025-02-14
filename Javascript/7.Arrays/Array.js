@@ -106,4 +106,11 @@ const analyzeUsers = (users) => {
   const activeUsers = users.filter((user) =>
     user.posts.some((post) => new Date(post.timestamp) >= oneWeekAgo)
   );
+
+  // Extracting popular posts (>=10 likes) from active users
+  const popularPosts = activeUsers.flatMap((user) =>
+    user.posts.filter(
+      (post) => new Date(post.timestamp) >= oneWeekAgo && post.likes >= 10
+    )
+  );
 };
