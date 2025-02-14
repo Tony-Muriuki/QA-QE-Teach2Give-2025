@@ -119,4 +119,11 @@ const analyzeUsers = (users) => {
   const avgLikesPerUser = activeUsers.length
     ? totalLikes / activeUsers.length
     : 0;
+
+  return {
+    activeUsersCount: activeUsers.length,
+    totalPopularPosts: popularPosts.length,
+    averageLikesPerUser: avgLikesPerUser.toFixed(2),
+  };
 };
+console.log(analyzeUsers(users));
