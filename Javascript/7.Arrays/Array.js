@@ -101,4 +101,9 @@ const users = [
 const analyzeUsers = (users) => {
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  // Filtering active users (posted in the last week)
+  const activeUsers = users.filter((user) =>
+    user.posts.some((post) => new Date(post.timestamp) >= oneWeekAgo)
+  );
 };
