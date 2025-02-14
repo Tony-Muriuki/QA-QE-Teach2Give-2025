@@ -97,3 +97,8 @@ const users = [
     ],
   },
 ];
+
+const analyzeUsers = (users) => {
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+};
