@@ -107,12 +107,19 @@ function displayUserInfo() {
   `;
 
   // Populate Transactions
-  let transactionsHTML = "<h2>Transactions</h2><ul>";
-  transactions.forEach((tx) => {
-    transactionsHTML += `<li><strong>${tx.description}:</strong> $${tx.amount} (ID: ${tx.id})</li>`;
-  });
-  transactionsHTML += "</ul>";
+  const transactionsHTML = `
+    <h2>Transactions</h2>
+    <ul>
+      ${transactions
+        .map(
+          (tx) =>
+            `<li><strong>${tx.description}:</strong> $${tx.amount} (ID: ${tx.id})</li>`
+        )
+        .join("")} 
+    </ul>
+  `;
 
+  // Append transactions list to the section
   document.getElementById("transactions").innerHTML = transactionsHTML;
 }
 
