@@ -99,6 +99,12 @@ function displayUserInfo() {
    <h2>Shipping Address</h2>
    <p>${shippingStreet}, ${shippingCity}, ${shippingState}, ${shippingPostalCode}, ${shippingCountry}</p>
  `;
+
+  // Populate Billing Address
+  document.getElementById("billing-address").innerHTML = `
+    <h2>Billing Address</h2>
+    <p>${billingStreet}, ${billingCity}, ${billingState}, ${billingPostalCode}, ${billingCountry}</p>
+  `;
 }
 
 // Call the function to display data
