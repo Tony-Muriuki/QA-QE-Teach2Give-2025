@@ -105,6 +105,15 @@ function displayUserInfo() {
     <h2>Billing Address</h2>
     <p>${billingStreet}, ${billingCity}, ${billingState}, ${billingPostalCode}, ${billingCountry}</p>
   `;
+
+  // Populate Transactions
+  let transactionsHTML = "<h2>Transactions</h2><ul>";
+  transactions.forEach((tx) => {
+    transactionsHTML += `<li><strong>${tx.description}:</strong> $${tx.amount} (ID: ${tx.id})</li>`;
+  });
+  transactionsHTML += "</ul>";
+
+  document.getElementById("transactions").innerHTML = transactionsHTML;
 }
 
 // Call the function to display data
