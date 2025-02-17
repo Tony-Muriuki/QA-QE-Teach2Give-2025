@@ -93,6 +93,12 @@ function displayUserInfo() {
     <p><strong>Name:</strong> ${first} ${last}</p>
     <p><strong>Email:</strong> ${email}</p>
   `;
+
+  // Populate Shipping Address
+  document.getElementById("shipping-address").innerHTML = `
+   <h2>Shipping Address</h2>
+   <p>${shippingStreet}, ${shippingCity}, ${shippingState}, ${shippingPostalCode}, ${shippingCountry}</p>
+ `;
 }
 
 // Call the function to display data
