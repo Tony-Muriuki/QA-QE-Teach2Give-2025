@@ -18,5 +18,5 @@
 ## Day 5: PRODUCTS DISPLAY(JSON)
 ![Screenshot from 2025-02-13 15-19-31](https://github.com/user-attachments/assets/9e1edb1c-02b8-4a6d-b6ef-ab13eeb42d38)
 
-
-
+## DESTRUCTURING ASSIGNMENT
+![Screenshot from 2025-02-18 08-47-08](https://github.com/user-attachments/assets/a0acac84-2389-48ca-b10b-5524c7a4baa8)
