@@ -115,3 +115,7 @@ console.log("Books published before 1950:", oldBooks);
 // 3. Use .sort() to arrange books by year (ascending)
 const sortedByYear = [...books].sort((a, b) => a.year - b.year);
 console.log("Books sorted by year:", sortedByYear);
+
+// 4. Using .sort() to arrange books by page count (descending)
+const sortedByPages = [...books].sort((a, b) => b.pages - a.pages);
+console.log("Books sorted by pages:", sortedByPages);
