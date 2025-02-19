@@ -107,3 +107,7 @@ const formattedBooks = books.map(
     `📖 ${book.title} by ${book.author} - ${book.genre} (${book.pages} pages)`
 );
 console.log("Formatted Books:", formattedBooks);
+
+// 2. Using .filter() to find books published before 1950
+const oldBooks = books.filter((book) => book.year < 1950);
+console.log("Books published before 1950:", oldBooks);
