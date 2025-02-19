@@ -111,3 +111,7 @@ console.log("Formatted Books:", formattedBooks);
 // 2. Using .filter() to find books published before 1950
 const oldBooks = books.filter((book) => book.year < 1950);
 console.log("Books published before 1950:", oldBooks);
+
+// 3. Use .sort() to arrange books by year (ascending)
+const sortedByYear = [...books].sort((a, b) => a.year - b.year);
+console.log("Books sorted by year:", sortedByYear);
