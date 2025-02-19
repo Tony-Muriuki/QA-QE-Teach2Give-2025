@@ -8,3 +8,10 @@ async function fetchData(callback) {
   console.log(data);
   callback(data);
 }
+
+//Step 2: Use Callbacks to Determine Special Book Criteria
+function specialBooks(data) {
+  const filteredByPage = data.filter((bookObj) => bookObj.pages > 500);
+  console.log(filteredByPage);
+}
+fetchData(specialBooks);
