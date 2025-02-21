@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchBooks() {
     try {
-      const response = await fetch("http://localhost:3000/Books"); // Replace with actual API endpoint
+      const response = await fetch("http://localhost:3000/Books");
       books = await response.json();
       displayBooks(books);
     } catch (error) {
