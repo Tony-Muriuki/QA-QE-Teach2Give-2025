@@ -33,13 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let books: Book[] = [];
   let cart: CartItem[] = [];
 
-  async function fetchBooks(): Promise<void> {
+  async function fetchBooks(): Promise<Book[]> {
     try {
       const response = await fetch("http://localhost:3000/Books");
-      books = await response.json();
+      if (!response.ok) throw new Error("Failed to fetch books");
+      const data: Book[] = await response.json();
+      books = data; // Update global books array
       displayBooks(books);
+      return books; // Explicitly return fetched books
     } catch (error) {
       console.error("Error fetching books:", error);
+      return []; // Return an empty array on error
     }
   }
 
