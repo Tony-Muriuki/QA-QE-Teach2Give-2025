@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "NodeNext", // Change from "ES6" to "NodeNext"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    // "moduleResolution": "node",
+    "allowJs": true,
+    "sourceMap": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
