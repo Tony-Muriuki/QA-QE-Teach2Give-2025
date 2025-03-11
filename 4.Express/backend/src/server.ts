@@ -9,6 +9,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+// const __dirname = path.resolve();
 
 // Middleware
 app.use(express.json()); // Enables JSON parsing
@@ -20,10 +21,6 @@ app.use(
   })
 );
 
-// Get the current directory
-const __dirname = path.resolve(); // ✅ Fixed variable name
-
-// Book type definition
 interface Book {
   id: number;
   title: string;
@@ -32,9 +29,8 @@ interface Book {
   pages: number;
 }
 
-// Read the book data from the database file with error handling
 let books: Book[] = [];
-const dbPath = path.join(__dirname, "src", "db", "db.json");
+const dbPath = path.join(__dirname, "db", "db.json");
 
 function saveBooksToFile() {
   try {
@@ -51,7 +47,6 @@ try {
   console.error("Error reading the database file:", error);
 }
 
-// 📌 GET books with filtering & sorting
 app.get("/api/books", (req: Request, res: Response) => {
   let filteredBooks: Book[] = [...books];
 
@@ -84,7 +79,7 @@ app.get("/api/books", (req: Request, res: Response) => {
   res.json(filteredBooks);
 });
 
-// ✅ PUT: Replace an entire book
+// PUT: Replace an entire book
 app.put("/api/books/:id", (req: Request, res: Response) => {
   const bookId = Number(req.params.id);
   const updatedBook: Partial<Book> = req.body;
@@ -112,7 +107,7 @@ app.put("/api/books/:id", (req: Request, res: Response) => {
   res.json({ message: "Book updated successfully", book: books[bookIndex] });
 });
 
-// ✅ PATCH: Update specific book fields
+//  PATCH: Update specific book fields
 app.patch("/api/books/:id", (req: Request, res: Response) => {
   const bookId = Number(req.params.id);
   const updates = req.body;
@@ -128,7 +123,7 @@ app.patch("/api/books/:id", (req: Request, res: Response) => {
   res.json({ message: "Book updated successfully", book: books[bookIndex] });
 });
 
-// ✅ DELETE: Remove a book
+// DELETE: Remove a book
 app.delete("/api/books/:id", (req: Request, res: Response) => {
   const bookId = Number(req.params.id);
   const bookIndex = books.findIndex((book) => book.id === bookId);
@@ -143,12 +138,12 @@ app.delete("/api/books/:id", (req: Request, res: Response) => {
   res.json({ message: "Book deleted successfully" });
 });
 
-// ✅ Root Route
+// Root Route
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World, Be humble to us");
 });
 
-// ✅ Start the server
+//  Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
