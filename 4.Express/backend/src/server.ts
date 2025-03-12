@@ -1,13 +1,16 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import { readFileSync, writeFileSync } from "fs";
-import path from "path";
 import { Pool } from "pg";
 import cors from "cors";
 
 // Load environment variables
 dotenv.config();
 
+// Initialize Express
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Database Connection Pool
 const pool = new Pool({
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
@@ -16,145 +19,195 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
-export default pool;
-
-const app = express();
-const port = process.env.PORT || 3000;
-// const __dirname = path.resolve();
+// export default pool;
 
 // Middleware
 app.use(express.json()); // Enables JSON parsing
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    methods: "GET, PUT, PATCH, DELETE",
+    methods: "GET, POST, PUT, PATCH, DELETE",
     credentials: true,
   })
 );
 
-interface Book {
-  id: number;
-  title: string;
-  genre: string;
-  year: number;
-  pages: number;
-}
-
-let books: Book[] = [];
-const dbPath = path.join(__dirname, "db", "db.json");
-
-function saveBooksToFile() {
+// Get All Books
+app.get("/api/books", async (req: Request, res: Response): Promise<void> => {
   try {
-    writeFileSync(dbPath, JSON.stringify(books, null, 2), "utf-8");
+    const result = await pool.query("SELECT * FROM books");
+    res.json(result.rows);
   } catch (error) {
-    console.error("Error writing to the database file:", error);
+    console.error("Error getting books:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
-}
+});
 
-try {
-  const booksData = readFileSync(dbPath, "utf-8");
-  books = JSON.parse(booksData);
-} catch (error) {
-  console.error("Error reading the database file:", error);
-}
+// Get a Single Book by ID
+app.get(
+  "/api/books/:id",
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const result = await pool.query("SELECT * FROM books WHERE id = $1", [
+        id,
+      ]);
 
-app.get("/api/books", (req: Request, res: Response) => {
-  let filteredBooks: Book[] = [...books];
+      if (result.rows.length === 0) {
+        res.status(404).json({ message: "Book not found" });
+        return;
+      }
 
-  if (req.query.genre) {
-    filteredBooks = filteredBooks.filter(
-      (book) =>
-        book.genre.toLowerCase() === String(req.query.genre).toLowerCase()
+      res.json(result.rows[0]);
+    } catch (error) {
+      console.error("Error getting book:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+);
+
+// Add a New Book
+app.post("/api/books", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      title,
+      author,
+      genre,
+      year,
+      pages,
+      publisher,
+      description,
+      image,
+      price,
+    } = req.body;
+    const result = await pool.query(
+      `INSERT INTO books (title, author, genre, year, pages, publisher, description, image, price) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+      [title, author, genre, year, pages, publisher, description, image, price]
     );
+
+    res
+      .status(201)
+      .json({ message: "Book added successfully", book: result.rows[0] });
+  } catch (error) {
+    console.error("Error adding book:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
-
-  const year = Number(req.query.year);
-  if (Number.isFinite(year)) {
-    filteredBooks = filteredBooks.filter((book) => book.year === year);
-  }
-
-  const pages = Number(req.query.pages);
-  if (Number.isFinite(pages)) {
-    filteredBooks = filteredBooks.filter((book) => book.pages >= pages);
-  }
-
-  const sortKey = String(req.query.sortBy);
-  const order = String(req.query.order) === "desc" ? -1 : 1;
-
-  if (sortKey && ["year", "pages"].includes(sortKey)) {
-    filteredBooks.sort((a, b) =>
-      a[sortKey as keyof Book] > b[sortKey as keyof Book] ? order : -order
-    );
-  }
-
-  res.json(filteredBooks);
 });
 
-// PUT: Replace an entire book
-app.put("/api/books/:id", (req: Request, res: Response) => {
-  const bookId = Number(req.params.id);
-  const updatedBook: Partial<Book> = req.body;
+// Update a Book (PUT - Full Replace)
+app.put(
+  "/api/books/:id",
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const {
+        title,
+        author,
+        genre,
+        year,
+        pages,
+        publisher,
+        description,
+        image,
+        price,
+      } = req.body;
 
-  if (
-    !updatedBook.title ||
-    !updatedBook.genre ||
-    !updatedBook.year ||
-    !updatedBook.pages
-  ) {
-    res.status(400).json({
-      error: "All book fields (title, genre, year, pages) are required.",
-    });
-    return;
+      const result = await pool.query(
+        `UPDATE books SET title=$1, author=$2, genre=$3, year=$4, pages=$5, publisher=$6, 
+       description=$7, image=$8, price=$9 WHERE id=$10 RETURNING *`,
+        [
+          title,
+          author,
+          genre,
+          year,
+          pages,
+          publisher,
+          description,
+          image,
+          price,
+          id,
+        ]
+      );
+
+      if (result.rows.length === 0) {
+        res.status(404).json({ message: "Book not found" });
+        return;
+      }
+
+      res.json({ message: "Book updated successfully", book: result.rows[0] });
+    } catch (error) {
+      console.error("Error updating book:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   }
+);
 
-  const bookIndex = books.findIndex((book) => book.id === bookId);
-  if (bookIndex === -1) {
-    res.status(404).json({ error: "Book not found." });
-    return;
+// Update Specific Fields (PATCH)
+app.patch(
+  "/api/books/:id",
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const fields = Object.keys(req.body);
+      const values = Object.values(req.body);
+
+      if (fields.length === 0) {
+        res.status(400).json({ message: "No fields to update" });
+        return;
+      }
+
+      const setClause = fields
+        .map((field, index) => `${field}=$${index + 1}`)
+        .join(", ");
+      const query = `UPDATE books SET ${setClause} WHERE id=$${
+        fields.length + 1
+      } RETURNING *`;
+
+      const result = await pool.query(query, [...values, id]);
+
+      if (result.rows.length === 0) {
+        res.status(404).json({ message: "Book not found" });
+        return;
+      }
+
+      res.json({ message: "Book updated successfully", book: result.rows[0] });
+    } catch (error) {
+      console.error("Error updating book:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   }
+);
 
-  books[bookIndex] = { ...updatedBook, id: bookId } as Book;
-  saveBooksToFile();
-  res.json({ message: "Book updated successfully", book: books[bookIndex] });
-});
+// Delete a Book
+app.delete(
+  "/api/books/:id",
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const result = await pool.query(
+        "DELETE FROM books WHERE id = $1 RETURNING *",
+        [id]
+      );
 
-//  PATCH: Update specific book fields
-app.patch("/api/books/:id", (req: Request, res: Response) => {
-  const bookId = Number(req.params.id);
-  const updates = req.body;
+      if (result.rows.length === 0) {
+        res.status(404).json({ message: "Book not found" });
+        return;
+      }
 
-  const bookIndex = books.findIndex((book) => book.id === bookId);
-  if (bookIndex === -1) {
-    res.status(404).json({ error: "Book not found." });
-    return;
+      res.json({ message: "Book deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting book:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   }
-
-  books[bookIndex] = { ...books[bookIndex], ...updates };
-  saveBooksToFile();
-  res.json({ message: "Book updated successfully", book: books[bookIndex] });
-});
-
-// DELETE: Remove a book
-app.delete("/api/books/:id", (req: Request, res: Response) => {
-  const bookId = Number(req.params.id);
-  const bookIndex = books.findIndex((book) => book.id === bookId);
-
-  if (bookIndex === -1) {
-    res.status(404).json({ error: "Book not found." });
-    return;
-  }
-
-  books.splice(bookIndex, 1);
-  saveBooksToFile();
-  res.json({ message: "Book deleted successfully" });
-});
+);
 
 // Root Route
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World, Be humble to us");
+  res.send("Hello World, Be humble to us!");
 });
 
-//  Start the server
+// Start the Server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
