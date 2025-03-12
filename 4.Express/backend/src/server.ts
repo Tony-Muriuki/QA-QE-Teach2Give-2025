@@ -2,10 +2,21 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { readFileSync, writeFileSync } from "fs";
 import path from "path";
+import { Pool } from "pg";
 import cors from "cors";
 
 // Load environment variables
 dotenv.config();
+
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+export default pool;
 
 const app = express();
 const port = process.env.PORT || 3000;
