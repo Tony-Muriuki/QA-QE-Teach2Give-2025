@@ -9,6 +9,7 @@ dotenv.config();
 // Initialize Express
 const app = express();
 const port = process.env.PORT || 3000;
+console.log(port);
 
 // Database Connection Pool
 const pool = new Pool({

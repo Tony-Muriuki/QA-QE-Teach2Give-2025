@@ -1,0 +1,13 @@
+-- Creates a database, username and password.
+
+CREATE DATABASE library;
+
+\c library;
+
+CREATE USER dev WITH ENCRYPTED PASSWORD '123456';
+
+GRANT ALL PRIVILEGES ON DATABASE library TO dev;
+
+GRANT ALL PRIVILEGES ON SCHEMA public TO dev;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO public;
+

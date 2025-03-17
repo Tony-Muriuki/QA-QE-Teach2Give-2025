@@ -1,0 +1,16 @@
+import User from "../controllers/user.js";
+import express from 'express'
+import Middleware from "../middleware/authMiddleware.js";
+
+const mid = new Middleware()
+const userRouter = express.Router()
+
+const user = new User()
+
+userRouter.get('/api/users', mid.isAdminOrLibrarian, user.getUsers);
+userRouter.get('/api/user/:id', mid.isAdminOrLibrarian,user.getUser)
+userRouter.post('/api/user', user.createUser)
+userRouter.patch('/api/librarian/:userId', mid.isAdmin, user.addLibrarian)
+
+
+export default userRouter 

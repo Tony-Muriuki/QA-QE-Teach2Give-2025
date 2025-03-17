@@ -1,0 +1,7 @@
+DB_USER=moses
+DB_HOST=localhost
+DB_NAME=library
+DB_PASSWORD=123456
+DB_PORT=5432
+PORT=3000
+JWT_SECRET=2oj&hd6IkpXVCJ9.eyJpZCI6NCwkonjcihbGcIUzicm9sZsn$konjcihbGcm9sZsn$I1NiIsInR5cCIdkSjkE
