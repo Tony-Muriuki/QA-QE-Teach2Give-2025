@@ -81,7 +81,7 @@ app.get("/", (req: Request, res: Response) => {
 // API route to respond with Events Data
 app.get("/api/eventData", (req: Request, res: Response) => {
   // res.setHeader("Content-Type", "application/json");
-  res.send(eventsData);
+  res.send(events);
 });
 
 //Now lets create a Get API ROUTE that Filters Events Based On Query Parameters
@@ -90,6 +90,7 @@ app.get("/api/eventsFilter", (req: Request, res: Response) => {
     const { title, location, company, price } = req.query;
     //On the first events the whole events havent been filtered
     let filteredEvents = [...events];
+    console.log(filteredEvents);
     //Filtered Logic
     if (title) {
       filteredEvents = filteredEvents.filter((event) => {
@@ -128,8 +129,72 @@ app.get("/api/eventsFilter", (req: Request, res: Response) => {
   }
 });
 
-app.get("/api/events/:id", (req: Request, res: Response) => {});
+//Getting Events By Id
+app.get("/api/events/:id", (req: Request, res: Response) => {
+  try {
+    const eventsId = Number(req.params.id); // Convert it to a number
+    console.log(eventsId);
 
+    if (isNaN(eventsId)) {
+      res.status(400).json({ message: "Invalid event Id" });
+      return;
+    }
+
+    // Find the event with that id in the dataset
+    const event = events.find((eventObj) => eventObj.id === eventsId); // ✅ Fix
+
+    console.log(event);
+    if (!event) {
+      res.status(404).json({ message: "Event Not Found" });
+      return;
+    }
+
+    // Event Found
+    res.send(event);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" }); // Changed status code to 500
+  }
+});
+
+//Handling Multiple Route Parameters
+app.get("/api/events/:category/:id", (req: Request, res: Response) => {
+  const { category, id } = req.params;
+  res.send(`Category:${category},EventsId:${id}`);
+});
+
+//Handling of Optional Route Parameters
+app.get("/api/events/:id?", (req: Request, res: Response) => {
+  const eventId = req.params.id;
+  if (eventId) {
+    try {
+      const eventsId = Number(req.params.id); // Convert it to a number
+      console.log(eventsId);
+
+      if (isNaN(eventsId)) {
+        res.status(400).json({ message: "Invalid event Id" });
+        return;
+      }
+
+      // Find the event with that id in the dataset
+      const event = events.find((eventObj) => eventObj.id === eventsId); // ✅ Fix
+
+      console.log(event);
+      if (!event) {
+        res.status(404).json({ message: "Event Not Found" });
+        return;
+      }
+
+      // Event Found
+      res.send(event);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" }); // Changed status code to 500
+    }
+  } else {
+    res.send("Fetching all events");
+  }
+});
 // Create Server
 app.listen(port, () => {
   console.log(`🚀 Server is running on http://localhost:${port}`);
