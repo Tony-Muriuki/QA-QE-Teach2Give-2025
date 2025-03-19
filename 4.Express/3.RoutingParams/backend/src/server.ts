@@ -133,7 +133,7 @@ app.get("/api/eventsFilter", (req: Request, res: Response) => {
 app.get("/api/events/:id", (req: Request, res: Response) => {
   try {
     const eventsId = Number(req.params.id); // Convert it to a number
-    console.log(eventsId);
+    console.log(req.params);
 
     if (isNaN(eventsId)) {
       res.status(400).json({ message: "Invalid event Id" });
@@ -166,6 +166,7 @@ app.get("/api/events/:category/:id", (req: Request, res: Response) => {
 //Handling of Optional Route Parameters
 app.get("/api/events/:id?", (req: Request, res: Response) => {
   const eventId = req.params.id;
+  console.log(req.params);
   if (eventId) {
     try {
       const eventsId = Number(req.params.id); // Convert it to a number
