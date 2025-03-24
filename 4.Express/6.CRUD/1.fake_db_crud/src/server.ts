@@ -78,19 +78,19 @@ const events = [
   },
 ];
 
-// Default route
+// Default route(ROOT ROUTE)
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to The Event Server API");
 });
 
 // API route to respond with Events Data
-
 app.get("/api/eventData", (req: Request, res: Response) => {
   // res.setHeader("Content-Type", "application/json");
   res.send(events);
 });
 
 //Now lets create a Get API ROUTE that Filters Events Based On Query Parameters
+/*****************************QUERY PARAMETERS*******************************************/
 app.get("/api/eventsFilter", (req: Request, res: Response) => {
   try {
     const { title, location, company, price } = req.query;
@@ -135,6 +135,7 @@ app.get("/api/eventsFilter", (req: Request, res: Response) => {
   }
 });
 
+/********************************ROUTE PARAMETERS********************************************** */
 //Getting Events By Id
 app.get("/api/events/:id", (req: Request, res: Response) => {
   try {
