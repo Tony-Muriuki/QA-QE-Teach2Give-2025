@@ -1,0 +1,101 @@
+-----------SEPARATION OF CONCERNS NOTES----------
+Separation of Concerns (SoC) in an Express.js Node backend refers to organizing your code into distinct modules, each handling a specific responsibility. This improves maintainability, scalability, and readability by preventing code from being tangled together.
+
+-----------------------------ROUTES
+Routing – Handles incoming HTTP requests and directs them to appropriate handlers
+
+
+-----------------------------CONTROLLERS
+Controllers in an Express.js backend handle incoming HTTP requests and contain business logic. They take user input, process it (sometimes with the help of services), and return a response.
+
+Example of a Controller:
+controllers/userController.js
+
+exports.getUsers = (req, res) => {
+    res.json([{ id: 1, name: "Tony" }]);
+};
+
+exports.createUser = (req, res) => {
+    const { name } = req.body;
+    res.status(201).json({ message: `User ${name} created successfully!` });
+};
+Here:
+
+The getUsers function handles a GET /users request and returns a list of users.
+
+The createUser function handles a POST /users request and creates a user.
+
+Key role: Controllers receive requests, process data (possibly using services), and send responses.
+
+--------------------------------MIDDLEWARES
+
+Middlewares are functions that run between the request and the response. They can modify the request, perform authentication, logging, etc.
+
+Example of a Middleware:
+middleware/authMiddleware.js
+
+module.exports = (req, res, next) => {
+    console.log(`Request: ${req.method} ${req.url}`);
+    next(); // Pass control to the next handler
+};
+
+Used in server.js:
+const authMiddleware = require('./middleware/authMiddleware');
+
+app.use(authMiddleware);
+Key role: Middlewares process requests before they reach controllers.
+
+
+--------------------------------UTILS(UTILITIES)
+
+Utils (short for utilities) are helper functions that handle common repetitive tasks across your project. They keep your code DRY (Don't Repeat Yourself) by providing reusable functions.
+
+Example of a Utility:
+utils/formatResponse.js
+
+exports.successResponse = (data, message = "Success") => {
+    return { status: "success", message, data };
+};
+
+exports.errorResponse = (error, message = "An error occurred") => {
+    return { status: "error", message, error };
+};
+
+
+Now, instead of repeating response formats in controllers, you can use:
+const { successResponse, errorResponse } = require('../utils/formatResponse');
+
+exports.getUsers = (req, res) => {
+    try {
+        const users = [{ id: 1, name: "Tony" }];
+        res.json(successResponse(users, "Users fetched successfully"));
+    } catch (error) {
+        res.status(500).json(errorResponse(error.message));
+    }
+};
+Key role: Utils provide reusable helper functions to avoid redundancy in controllers and services.
+
+
+--------------------------------------FOLDER OR FILE STRUCTURE FOR SOC--------------------------------------
+
+/my-express-app
+│── controllers/       # Request handlers
+│   ├── userController.js
+│
+│── services/          # Business logic (e.g., database operations)
+│   ├── userService.js
+│
+│── models/            # Database schemas
+│   ├── User.js
+│
+│── routes/            # Defines API endpoints
+│   ├── userRoutes.js
+│
+│── middleware/        # Request pre-processing
+│   ├── authMiddleware.js
+│
+│── utils/             # Helper functions
+│   ├── formatResponse.js
+│
+│── server.js          # App entry point
+│── .env               # Configuration
