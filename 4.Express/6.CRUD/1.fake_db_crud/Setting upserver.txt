@@ -1,0 +1,16 @@
+1;Configure dotenv.------ dotenv.config()
+2:Instance of express-----const app=express()
+3:Middleware(anything that comes before Routes /using app.smth())
+5.Create Server...app.listen()
+
+
+
+ERRORS I HAD WERE SOLVED BY ADDING THE MIDDLEWARES BELOW ALWAYS PASS THEM
+// Middleware to parse JSON
+app.use(express.json()); // Parses JSON request body
+app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
+
+Add this before defining your routes in server.ts:
+Without this middleware, req.body will be undefined, causing the error.
+✅ Solution: Always use app.use(express.json()); at the top of your server file.
+

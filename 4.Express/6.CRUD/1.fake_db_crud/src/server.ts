@@ -3,13 +3,18 @@ import dotenv from "dotenv";
 import { Request, Response, NextFunction } from "express";
 import { readFileSync } from "fs";
 import path from "path";
+import { faker } from "@faker-js/faker";
 import cors from "cors";
+import { userData } from "./db/userData";
 
 // Configuring Dotenv
 dotenv.config();
 
 // Instance of Express
 const app = express();
+
+// Middleware to parse JSON
+app.use(express.json()); // Parses JSON request body
 
 // Loading Variables
 const port = process.env.PORT;
@@ -75,10 +80,11 @@ const events = [
 
 // Default route
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World, I am Learning Express!");
+  res.send("Welcome to The Event Server API");
 });
 
 // API route to respond with Events Data
+
 app.get("/api/eventData", (req: Request, res: Response) => {
   // res.setHeader("Content-Type", "application/json");
   res.send(events);
@@ -196,6 +202,35 @@ app.get("/api/events/:id?", (req: Request, res: Response) => {
     res.send("Fetching all events");
   }
 });
+
+//ROUTE TO GET ALL USERS
+app.get("/api/v1/users", (req: Request, res: Response) => {
+  res.status(200).send(userData);
+});
+
+//CRUD :THE POST METHOD
+app.post("/api/v1/users", (req: Request, res: Response) => {
+  const { body } = req;
+  console.log("Received Body:", req.body); // Debugging
+
+  if (!body.userName || !body.displayName) {
+    res.status(400).json({ message: "Missing userName or displayName" });
+    return;
+  }
+
+  const newId =
+    userData.length > 0 ? userData[userData.length - 1].userId + 1 : 1;
+
+  const newData = { userId: newId, ...body };
+
+  userData.push(newData);
+
+  res.status(201).json({
+    message: "Successfully posted",
+    payload: newData,
+  });
+});
+
 // Create Server
 app.listen(port, () => {
   console.log(`🚀 Server is running on http://localhost:${port}`);
