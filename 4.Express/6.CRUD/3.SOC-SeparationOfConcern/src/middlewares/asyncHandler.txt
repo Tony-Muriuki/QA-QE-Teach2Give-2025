@@ -18,6 +18,7 @@ The Express server crashing due to an unhandled Promise rejection.
 The request hanging indefinitely because the route handler never calls next() to proceed to the next middleware.
 Security risks if sensitive errors are leaked to the client due to improper error handling
 
+---------EXAMPLE OF CODE ---------
 app.get("/user/:id", async (req, res) => {
   const user = await getUserById(req.params.id); // If this fails, the error isn't caught
   res.json(user);
