@@ -1,4 +1,41 @@
-An async handler in middleware is a function that handles asynchronous operations inside an Express middleware. Since middleware functions often deal with tasks like database queries, API calls, or file operations, they need to handle asynchronous behavior properly.
+An asyncHandler in an Express.js backend is a middleware function that simplifies handling asynchronous route handlers and errors. Since Express does not catch errors in asynchronous functions automatically, using an asyncHandler helps avoid writing repetitive try...catch blocks in every route.
+
+EXAMPLE
+const asyncHandler = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
+How it Works:
+It takes an asynchronous function (fn) as an argument.
+
+It executes fn and wraps it in Promise.resolve(), ensuring that any rejection (error) is passed to Express's next() function.
+
+This allows Express’s built-in error-handling middleware to handle the error automatically.
+
+Usage in Express Routes
+Instead of writing:
+
+
+app.get('/data', async (req, res, next) => {
+  try {
+    const data = await fetchData();
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+});
+You can simplify it with asyncHandler:
+
+
+app.get('/data', asyncHandler(async (req, res) => {
+  const data = await fetchData();
+  res.json(data);
+}));
+Benefits:
+Eliminates redundant try...catch blocks.
+
+Ensures unhandled promise rejections are caught properly.
+
+Keeps code clean and readable.
 
 
 The asyncHandler function is an essential utility in Express.js applications that ensures robust error handling in asynchronous route handlers. Here's a detailed breakdown of why it's important:
