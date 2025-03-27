@@ -1,0 +1,103 @@
+/* Improved Global and Body Styling */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f5f2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-attachment: fixed;
+}
+
+/* Optional subtle background pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  background-image: linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 20px 20px;
+  z-index: -1;
+}
+
+/* Enhanced Form Container Styling */
+app-job-application-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  perspective: 1000px;
+}
+
+app-job-application-form > .container {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+app-job-application-form > .container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #4a90e2, #50c878);
+}
+
+app-job-application-form > .container:hover {
+  transform: scale(1.02) rotateX(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 600px) {
+  body,
+  html {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    padding: 1rem;
+  }
+
+  app-job-application-form > .container {
+    width: 95%;
+    max-width: none;
+    margin: 0;
+    padding: 1.5rem;
+  }
+}
+
+/* Subtle Animation */
+@keyframes subtle-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Add subtle floating effect */
+app-job-application-form > .container {
+  animation: subtle-float 4s ease-in-out infinite;
+}

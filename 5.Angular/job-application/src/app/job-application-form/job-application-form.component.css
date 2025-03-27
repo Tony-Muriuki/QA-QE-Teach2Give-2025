@@ -1,0 +1,183 @@
+/* Form Container Styles */
+.container {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 5px 10px rgba(0, 0, 0, 0.03);
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
+}
+
+/* Form Heading Styles */
+.container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.container h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 60px;
+  height: 3px;
+  background-color: #3498db;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.container:hover h2::after {
+  width: 100px;
+}
+
+/* Label Styles */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+/* Input Styles */
+input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+input:hover {
+  border-color: #bdc3c7;
+}
+
+/* Error Message Styles */
+.error {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skills Section Styles */
+.container h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.container h3::before {
+  content: "💡";
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Skill Input Container */
+[formArrayName="skills"] {
+  margin-bottom: 1.5rem;
+}
+
+/* Skill Input and Remove Button Container */
+[formArrayName="skills"] > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 10px;
+}
+
+/* Skill Input Specific Styles */
+[formArrayName="skills"] input {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+/* Button Styles */
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+/* Add Skill Button */
+[formArrayName="skills"] > button {
+  background-color: #2ecc71;
+  margin-top: 0.5rem;
+}
+
+/* Remove Skill Button */
+[formArrayName="skills"] button:first-of-type {
+  background-color: #e74c3c;
+  margin-left: auto;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  [formArrayName="skills"] > div {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  [formArrayName="skills"] input {
+    width: 100%;
+  }
+}

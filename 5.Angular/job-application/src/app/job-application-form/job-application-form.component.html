@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Job Application Form</h2>
+  <form [formGroup]="jobApplicationForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" required />
+    <div
+      *ngIf="
+        jobApplicationForm.get('name')?.invalid &&
+        jobApplicationForm.get('name')?.touched
+      "
+    >
+      <small class="error">Name is required.</small>
+    </div>
+
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" type="email" required />
+    <div
+      *ngIf="
+        jobApplicationForm.get('email')?.invalid &&
+        jobApplicationForm.get('email')?.touched
+      "
+    >
+      <small class="error">Valid email is required.</small>
+    </div>
+
+    <div formArrayName="skills">
+      <h3>Skills</h3>
+      <div *ngFor="let skill of skills.controls; let i = index">
+        <input [formControlName]="i" placeholder="Enter a skill" />
+        <button type="button" (click)="removeSkill(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addSkill()">Add Skill</button>
+    </div>
+
+    <button type="submit" [disabled]="jobApplicationForm.invalid">
+      Submit
+    </button>
+  </form>
+</div>
