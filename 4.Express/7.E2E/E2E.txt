@@ -1,0 +1,7 @@
+1:Configure the dotenv.
+2:Express Instance.
+3:Load Variables.
+4:Enable all important middlewares.
+5:Create all routes.
+6:Load more middlewares eg:Error handlers
+7:Start the server
