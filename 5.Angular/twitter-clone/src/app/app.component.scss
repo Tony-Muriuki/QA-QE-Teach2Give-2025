@@ -1,5 +1,136 @@
-h2 {
-  text-align: center;
-  color: #1da1f2;
-  margin-bottom: 20px;
+// Color Variables
+$gradient-start: #1da1f2;
+$gradient-middle: #7e57c2;
+$gradient-end: #e91e63;
+$background-dark: #15202b;
+$text-primary: #ffffff;
+
+header {
+  background: linear-gradient(
+    90deg,
+    $gradient-start 0%,
+    $gradient-middle 50%,
+    $gradient-end 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: $text-primary;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+
+  // Animated gradient background
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  // Subtle glowing effect
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.2) 0%,
+      transparent 70%
+    );
+    animation: glowPulse 5s infinite alternate;
+  }
+
+  @keyframes glowPulse {
+    0% {
+      opacity: 0.3;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+
+    // Add a subtle icon effect
+    &::before {
+      content: "✦";
+      margin-right: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 20px;
+    }
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 5px 10px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input,
+    select {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: $text-primary;
+      padding: 8px;
+      font-size: 14px;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    select {
+      appearance: none;
+      background: transparent;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+      background-repeat: no-repeat;
+      background-position-x: 100%;
+      background-position-y: 50%;
+      border: none;
+      margin-left: 10px;
+    }
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .search-bar {
+      width: 100%;
+    }
+  }
 }

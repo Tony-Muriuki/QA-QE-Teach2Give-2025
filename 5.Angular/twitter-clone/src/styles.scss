@@ -1,23 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 body {
-  background-color: #f4f4f9;
-  color: #333;
+  background-color: #f0f2f5;
+  color: #1c1e21;
+  line-height: 1.6;
   margin: 0;
   padding: 20px;
 }
 
 .container {
-  max-width: 600px;
-  margin: auto;
+  max-width: 800px; /* Wider container */
+  width: 100%;
+  margin: 20px auto;
   background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e5e5;
+}
+
+/* Twitter-inspired Card Style */
+.twitter-card {
+  background-color: white;
+  border-radius: 16px;
+  border: 1px solid #e1e4e8;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  transition: box-shadow 0.3s ease;
+}
+
+.twitter-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  color: #1c1e21;
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #1da1f2; /* Twitter blue */
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1991da;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+    padding: 15px;
+    margin: 10px auto;
+  }
+}
+
+/* Color Palette */
+:root {
+  --twitter-blue: #1da1f2;
+  --twitter-dark-blue: #1991da;
+  --facebook-blue: #4267b2;
+  --instagram-gradient: linear-gradient(
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+  );
 }
