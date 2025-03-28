@@ -18,11 +18,11 @@ export class ApiService {
     return this.http.get<any[]>(`${this.BASE_URL}/posts?userId=${userId}`);
   }
 
-  getCommentsByPost(postId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.BASE_URL}/comments?postId=${postId}`);
+  getPosts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.BASE_URL}/posts`);
   }
 
-  getPosts(): Observable<any[]> {
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts'); // Replace with your API URL
+  getCommentsByPost(postId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.BASE_URL}/comments?postId=${postId}`);
   }
 }

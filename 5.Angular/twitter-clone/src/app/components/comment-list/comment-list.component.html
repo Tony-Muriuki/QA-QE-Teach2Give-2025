@@ -1,1 +1,6 @@
-<p>comment-list works!</p>
+<div class="comment-list">
+  <div *ngFor="let comment of comments" class="comment">
+    <strong>{{ comment.name }}</strong>
+    <p>{{ comment.body }}</p>
+  </div>
+</div>
