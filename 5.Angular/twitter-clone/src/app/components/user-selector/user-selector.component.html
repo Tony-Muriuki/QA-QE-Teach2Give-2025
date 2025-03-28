@@ -1,1 +1,5 @@
-<p>user-selector works!</p>
+<select class="form-select" [(ngModel)]="selectedUserId">
+  <option *ngFor="let user of users" [value]="user.id">
+    {{ user.name }}
+  </option>
+</select>
