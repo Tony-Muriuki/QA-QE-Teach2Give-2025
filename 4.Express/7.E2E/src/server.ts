@@ -3,6 +3,8 @@ import { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import authRoutes from "./routes/authRoutes";
+
 //1:Configuring the dotenv
 dotenv.config();
 
@@ -28,10 +30,12 @@ app.use(
   })
 );
 
-//ROUTES
+//4:ROUTES
 app.get("/", (req: Request, res: Response) => {
   res.send("I AM WORKING");
 });
+
+app.use("/api/v1/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running at port http://localhost:${PORT}`);
