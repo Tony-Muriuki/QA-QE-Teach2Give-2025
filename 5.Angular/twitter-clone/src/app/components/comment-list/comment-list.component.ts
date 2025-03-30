@@ -10,7 +10,7 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./comment-list.component.scss'],
 })
 export class CommentListComponent implements OnInit {
-  @Input() postId!: number; // Ensure this input exists
+  @Input() postId!: number;
   comments: any[] = [];
 
   constructor(private apiService: ApiService) {}

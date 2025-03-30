@@ -14,7 +14,7 @@ export class UserSelectorComponent implements OnInit {
   users: any[] = [];
   selectedUserId: number = 1;
 
-  @Output() userSelected = new EventEmitter<number>(); // ✅ Updated event name
+  @Output() userSelected = new EventEmitter<number>();
 
   constructor(private apiService: ApiService) {}
 
@@ -22,13 +22,13 @@ export class UserSelectorComponent implements OnInit {
     this.apiService.getUsers().subscribe((users) => {
       this.users = users;
       if (users.length > 0) {
-        this.selectedUserId = users[0].id; // Default to first user
-        this.userSelected.emit(this.selectedUserId); // Emit initial value
+        this.selectedUserId = users[0].id;
+        this.userSelected.emit(this.selectedUserId);
       }
     });
   }
 
   onUserChange(): void {
-    this.userSelected.emit(this.selectedUserId); // Emit when selection changes
+    this.userSelected.emit(this.selectedUserId);
   }
 }

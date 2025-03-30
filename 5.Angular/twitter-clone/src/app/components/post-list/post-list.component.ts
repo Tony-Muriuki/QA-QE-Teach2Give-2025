@@ -29,7 +29,7 @@ export class PostListComponent implements OnInit {
       this.apiService.getPostsByUser(this.userId).subscribe((posts) => {
         this.posts = posts.map((post) => ({
           ...post,
-          showComments: false, // Initialize comments as hidden
+          showComments: false,
         }));
       });
     }
