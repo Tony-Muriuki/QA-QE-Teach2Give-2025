@@ -1,0 +1,55 @@
+When you create an object from a class in JavaScript, it is called instantiating the class.
+
+The new keyword is used to create an instance of the class.
+
+The method that runs automatically when a new instance is created is called the constructor.
+
+------------------------------------------EXAMPLE-------------------------------------
+
+class Person {
+  constructor(name, age) { // This is the constructor
+    this.name = name;
+    this.age = age;
+  }
+}
+
+// Instantiating the class (creating an instance)
+let person1 = new Person("Pedro", 19);  // Instance 1
+let person2 = new Person("Moise Keane", 23); // Instance 2
+
+console.log(person1); // Output: Person { name: 'Pedro', age: 19 }
+console.log(person2); // Output: Person { name: 'Moise Keane', age: 23 }
+
+
+
+----------------------------------Summary--------------------------------------
+Component	----------Definition	-------------------------------------Example from Code
+Fields (Properties)	|Variables that store object data	              |this.name, this.age
+Methods	            |Functions inside the class that define behavior	|getName(), getAge()
+
+
+
+Key Terminology:
+Class – A blueprint for creating objects.
+
+Instance – An object created from a class.
+
+Instantiation – The process of creating an instance of a class.
+
+Constructor – A special method (constructor()) that initializes object properties when an instance is created.
+
+
+
+
+
+
+
+
+
+
+Summary:
+"Instantiating a class" means creating an object from a class.
+
+The constructor is the special method that initializes the object.
+
+The new keyword is required to instantiate (create) an object from the class.
