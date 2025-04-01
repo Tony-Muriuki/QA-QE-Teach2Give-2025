@@ -1,0 +1,85 @@
+What is JWT (JSON Web Token)?
+JWT (JSON Web Token) is an open standard (RFC 7519) used to securely transmit information between parties as a JSON object. It can be used for authentication and authorization and is widely used in web applications for managing user sessions.
+
+Structure of JWT
+A JWT consists of three parts, each separated by a dot (.):
+
+Header
+Contains metadata about the token, such as the algorithm used to sign it (e.g., HS256, RS256).
+
+Example: {"alg": "HS256", "typ": "JWT"}
+
+Payload
+Contains the claims, which are the actual data. Claims could be about an entity (usually the user) and some additional data. The payload is base64 encoded but not encrypted, meaning anyone who has access to the token can read it. However, it is tamper-proof if the signature is valid.
+
+---------------------------EXAMPLE--------------------------
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516239022
+}
+Common Claims:
+
+sub: Subject (typically the user ID)
+
+iat: Issued at (timestamp of when the token was issued)
+
+exp: Expiration time (optional, but highly recommended)
+
+3:Signature
+The signature is created by encoding the header and payload and signing them with a secret key (using an algorithm like HS256 or RS256). This ensures that the token has not been tampered with. The signature is used by the server to verify the token's integrity.
+
+Example:
+
+HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
+
+
+How Does JWT Work?
+User logs in: After a successful login (via username/password or another authentication method), the server generates a JWT, including claims like the user's ID and roles, and signs it using a secret or private key.
+
+Token Sent to Client: The JWT is sent back to the client (usually in the response body or as a cookie).
+
+Client Makes Requests: The client stores the JWT (usually in memory, or HTTP-only cookie for security) and includes it in the Authorization header of subsequent API requests as a Bearer token.
+
+Example: Authorization: Bearer <your_jwt_token_here>
+
+Server Verifies JWT: On each request, the server verifies the JWT by checking the signature. If valid, it processes the request and responds to the client. If invalid or expired, the server responds with an error (e.g., 401 Unauthorized).
+
+Why Use JWT?
+Stateless Authentication: JWT allows for stateless authentication, meaning the server does not need to maintain session information. All necessary user info is in the token itself.
+
+Security: The JWT can be signed, and optionally encrypted, ensuring its authenticity and integrity. The signature prevents tampering.
+
+Flexibility: It is language-agnostic and works across different platforms, making it easy to integrate with many services.
+
+Scalability: Because the token is self-contained and stateless, scaling applications or deploying across multiple servers becomes easier. No need to maintain session data on a central server.
+
+JWT Use Cases
+Authentication: After a successful login, a JWT is used to authenticate requests (as long as the token remains valid).
+
+Authorization: JWTs can contain roles or permissions, enabling fine-grained access control.
+
+Single Sign-On (SSO): JWTs are widely used in SSO systems because they allow multiple applications to share the same authentication system.
+
+JWT Example
+A JWT token might look like this (Base64-encoded parts for header, payload, and signature):
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Where:
+
+Header: { "alg": "HS256", "typ": "JWT" }
+
+Payload: { "sub": "1234567890", "name": "John Doe", "iat": 1516239022 }
+
+Signature: A signed string ensuring the token has not been tampered with.
+
+Security Considerations
+Never store JWTs in localStorage (vulnerable to XSS attacks).
+
+Always use HTTPS to encrypt JWTs in transit.
+
+Set short expiration times for access tokens and use refresh tokens to renew them.
+
+Always verify the token's signature to ensure its integrity.
+
