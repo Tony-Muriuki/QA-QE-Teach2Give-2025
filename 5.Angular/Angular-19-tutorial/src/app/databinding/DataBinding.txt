@@ -1,0 +1,107 @@
+Angular Data Binding
+✅ What is Angular Data Binding?
+Data Binding in Angular is the process of connecting data between the component logic (.ts file) and the HTML template (.html file). It enables dynamic interaction between the user interface and the application's data logic.
+
+It ensures that:
+
+Data can flow from the component to the template.
+
+The view (template) can respond to user inputs and send data back to the component.
+
+There are two main types of data binding in Angular:
+
+🔹 Types of Data Binding
+1. One-Way Data Binding
+Data flows in a single direction—either from component to template or from template to component.
+
+There are three forms of one-way binding:
+
+a) Interpolation ({{ }})
+Syntax: {{ value }}
+
+Binds component data to the HTML.
+
+Example: <h1>{{ title }}</h1>
+
+b) Property Binding ([ ])
+Syntax: [property]="value"
+
+Sets the value of an HTML property from the component.
+
+Example: <img [src]="imageUrl">
+
+c) Event Binding (( ))
+Syntax: (event)="handlerFunction()"
+
+Sends data from the template (view) to the component by responding to user actions.
+
+Example: <button (click)="handleClick()">Click Me</button>
+
+💡 Summary:
+
+Interpolation & Property Binding → Component → Template
+
+Event Binding → Template → Component
+
+2. Two-Way Data Binding
+Data flows both ways: from component to template and from template to component.
+
+It keeps both in synchronization, meaning changes in one are instantly reflected in the other.
+
+🔁 Syntax: [(ngModel)]
+Combines property binding [ ] and event binding ( ).
+
+Often referred to as "banana in a box".
+
+Example: <input [(ngModel)]="username">
+
+📦 Setup Required:
+To use [(ngModel)], you must:
+
+Import FormsModule in your module (or component if it's standalone).
+
+ts
+Copy
+Edit
+import { FormsModule } from '@angular/forms';
+📌 Conclusion
+Angular Data Binding plays a crucial role in building dynamic applications:
+
+Connects component logic with the HTML template.
+
+Keeps the UI and the component data in sync automatically.
+
+It makes your applications more interactive, easier to maintain, and responsive to user actions.
+
+
+
+🔁 Angular Data Binding Diagram
+
+        +----------------+                               
+        |  Component.ts  |                               
+        +----------------+                               
+                 |                                    
+     -----------------------------                    
+     |             |             |                    
+     V             V             V                    
+{{ Interpolation }}     [Property Binding]       (Event Binding)          
+ "title" --> <h1>{{ title }}</h1>      [src]="imageUrl"     (click)="onClick()"
+                 |                                                
+         One-Way: Component to Template               One-Way: Template to Component
+
+                         ↘                       
+                        ↙                        
+                [(ngModel)] Binding                        
+         <input [(ngModel)]="username">                   
+          Two-Way: Component ⬌ Template           
+
+
+
+
+💬 Summary of Bindings:
+
+Binding Type	Syntax	Direction	Use Case
+Interpolation	{{ value }}	Component ➡ Template	Display values
+Property Binding	[property]="value"	Component ➡ Template	Bind HTML properties
+Event Binding	(event)="method()"	Template ➡ Component	Respond to user actions
+Two-Way Binding	[(ngModel)]	Component ⬄ Template	Sync form inputs with component state
