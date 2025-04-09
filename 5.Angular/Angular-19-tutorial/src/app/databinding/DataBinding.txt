@@ -1,4 +1,5 @@
 Angular Data Binding
+
 ✅ What is Angular Data Binding?
 Data Binding in Angular is the process of connecting data between the component logic (.ts file) and the HTML template (.html file). It enables dynamic interaction between the user interface and the application's data logic.
 

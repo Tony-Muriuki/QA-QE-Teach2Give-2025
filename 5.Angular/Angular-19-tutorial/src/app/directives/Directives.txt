@@ -1,0 +1,68 @@
+🧭 Angular Directives
+✅ What Are Directives in Angular?
+Directives in Angular are reusable code blocks that extend the capabilities of standard HTML. They are classes that add additional behavior to elements in your Angular applications.
+
+By using Angular’s built-in directives, we can control:
+
+The structure of the DOM
+
+The appearance and behavior of elements
+
+Dynamic styling and content rendering
+
+🔻 Types of Directives in Angular
+Angular provides three main types of directives:
+
+Component Directives
+
+Structural Directives
+
+Attribute Directives
+
+1. 🔹 Component Directives
+Component directives are the most common type and are used to define Angular components.
+
+A component directive includes a template, logic, and styles, making it the building block of any Angular application.
+
+They allow you to break down your app into smaller, manageable pieces.
+
+✅ You can generate a component using the Angular CLI command:
+ng generate component component-name
+
+
+2. 🔸 Structural Directives
+Structural directives change the structure of the DOM by adding or removing elements dynamically based on conditions.
+
+Common Structural Directives:
+Directive	Purpose
+*ngIf	Conditionally show or hide elements based on a boolean expression
+*ngFor	Loop through a list and render an element for each item
+*ngSwitch	Conditionally display elements based on the value of an expression
+
+💡 Use:
+
+*ngIf to show/hide content
+
+*ngFor to loop through data
+
+*ngSwitch as an alternative to multiple ngIf statements for better readability
+
+3. 🔸 Attribute Directives
+Attribute directives modify the behavior or appearance of an element without changing its structure (i.e., they don’t add or remove DOM elements).
+
+They’re typically used to change styling, classes, or respond to state changes.
+
+Common Attribute Directives:
+
+Directive	Purpose
+
+[ngClass]	Dynamically add or remove CSS classes
+[ngStyle]	Dynamically apply inline styles
+[ngModel]	Enables two-way data binding for form elements
+💡 These are useful for adding conditional styling or dynamic behavior to elements.
+
+🧩 Summary
+Directive Type	Function
+Component Directive	Defines components; the core building blocks of Angular apps
+Structural Directive	Alters the DOM structure (add/remove elements)
+Attribute Directive	Modifies the appearance/behavior of existing DOM elements
