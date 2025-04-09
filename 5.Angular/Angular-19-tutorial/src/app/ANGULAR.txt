@@ -1,0 +1,9 @@
+----------------------------01.STANDALONE COMPONENTS--------------------------------
+**The primary purpose of  components is to break down our Angular application into smaller manageable parts.And this allows us to structure our application into separate modular components such as Headers , Footers , Left Content , Right Content and more.
+** Depending on the requirement we can further divide our application into smaller units.Additionally all this components need and must be imported into the root component meaning the APP COMPONENT.Because in any angular application the app component serves as the root component. And in some cases we need to import one component into another component.
+
+
+
+---------------------COMMAND TO GENERATE A COMPONENT IN ANGULAR------------------------------
+**ng generate component[name] || ng generate c[name] ||  ng g c [name]
+
